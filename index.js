@@ -44,6 +44,12 @@ async function run() {
         res.send(users)
     })
 
+    app.get("/user", async(req, res)=>{
+      const userId = req.query.id;
+      const result = await usersCollection.findOne({"_id":new ObjectId(userId)})
+      res.send(result)
+    })
+
     app.delete("/user/:userId", async(req, res)=>{
         const {userId} = req.params;
         const result = await usersCollection.deleteOne({"_id":new ObjectId(userId)})
