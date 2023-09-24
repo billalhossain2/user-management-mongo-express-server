@@ -15,7 +15,11 @@ app.get("/", (req, res)=>{
     res.send(`User management server is listening on the port ${port}`)
 })
 
-const uri = `mongodb+srv://${process.env.MONGODB_USER}:${process.env.MONGODB_PASSWORD}@cluster0.0ak1okw.mongodb.net/?retryWrites=true&w=majority`;
+app.get("/test", (req, res)=>{
+  res.send(" I am outside of MongoDB")
+})
+
+const uri = process.env.MONGODB_URI;
 // Create a MongoClient with a MongoClientOptions object to set the Stable API version
 const client = new MongoClient(uri, {
   serverApi: {
@@ -81,22 +85,6 @@ async function run() {
   }
 }
 run().catch(console.dir);
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
 
 app.listen(port, ()=>{
     console.log(`User management server is running on the port ${port}`)
