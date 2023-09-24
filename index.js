@@ -56,6 +56,11 @@ async function run() {
         res.send(result)
     })
 
+    app.delete("/users", async(req, res)=>{
+      const result = await usersCollection.deleteMany({})
+      res.send(result)
+    })
+
     app.put("/user/:userId", async(req, res)=>{
         const {userId} = req.params;
         const updateUser = req.body;
